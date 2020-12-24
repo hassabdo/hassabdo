@@ -1,0 +1,280 @@
+/* ==================================================================== 
+    Fonts Importation 
+====================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Grandstander&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+/* ==================================================================== 
+    General Styling 
+====================================================================== */
+/* 
+ * I used scroll snaping to navigate smoothly between the sections
+ * it works well on Firefox but there are some offset problems on Google Chrome :/ that's why commented it 
+*/ 
+html {
+    height: 100vh;
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+    scroll-padding-bottom: 85px;
+    /* scroll-snap-type: y mandatory; */
+    scroll-snap-destination: 0% 100%;
+    scroll-snap-points-x: repeat(100%);
+    overflow: auto;
+}
+.scroll-align-start {
+    scroll-snap-align: start;
+}
+.scroll-align-end {
+    scroll-snap-align: end;
+}
+body {
+    font-family:  'Syne Mono', monospace;;
+}
+nav, h1,h2,h3,h4 {
+    font-family: 'Grandstander', cursive;
+}
+.content-wrapper {
+    max-width: 80%;
+    margin: auto;
+}
+/* ==================================================================== 
+    Header of the page
+====================================================================== */
+
+/*  Portolio logo and animation 
+====================================================================== */
+#portfolio {
+    font-family: 'Grandstander', cursive;
+    font-size: 3em;
+}
+#portfolio span {
+    display: inline-block;
+    animation: rotateRow infinite alternate 3s linear;
+    color: #444444;
+}
+/*  Nav bar and its animation 
+====================================================================== */
+nav ul a {
+    font-size: 1.5em;
+}
+nav ul a:hover {
+    animation-name: effect3d;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+/**
+ * I've changed the style of the active section on nav bar when scrolling over the different sections 
+ * with scrollSpy of Bootstrap 
+*/
+.active {
+    border-bottom: 4px solid #EEEEEE;
+}
+/* ==================================================================== 
+    Home section  
+====================================================================== */
+
+/*  Hello intro and its animation
+====================================================================== */
+.typing {
+    visibility: hidden;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #1684eb;
+    animation: typing 2s steps(12, end), cursor .2s steps(12, end) infinite;
+    animation-fill-mode: forwards;
+}
+#second-line h4 {
+    visibility: hidden;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #1684eb;
+    animation: typing 2s steps(12, end), cursor .2s steps(12, end) infinite;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+}
+.text-background-black {
+    background: rgba(1, 15, 34, 0.7);
+    color: white;
+}
+/*  Hand salute animation
+====================================================================== */
+#hand {
+    animation-name: hand-salute;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    transform-origin: center;
+}
+/* ==================================================================== 
+    About section  
+====================================================================== */
+
+/*  Profile photo border and h3 title's animation
+====================================================================== */
+h3 {
+    animation: bounce 2s linear infinite;
+}
+#about-img {
+    border: 3px solid #2196F3;
+    border-radius: 95%;
+}
+/* ==================================================================== 
+    Skills section  
+====================================================================== */
+#skills-container svg {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+/**
+ * I planned The Entrance of the skills elements to be animated.
+ * I wanted to play the animation when scrolling to the section 
+ * but it requires some complicated javascript code so now it's only playable once you load the page 
+ * (maybe when the Javascript skill element will be full green I could do it).
+*/  
+#html, #css, #js, #php, #mysql, #bootstrap, #laravel, #vuejs {
+    opacity: 0;
+    cursor: pointer;
+}
+#html, #css, #js, #php, #mysql {
+    animation-name: enterLeftBounce;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-duration: 0.5s;
+}
+#html {
+    animation-delay: 0s;
+}
+#css {
+    animation-delay: 0.5s;
+}
+#js {
+    animation-delay: 1s;
+}
+#php {
+    animation-delay: 1.5s;
+}
+#mysql {
+    animation-delay: 2s;
+}
+#bootstrap, #laravel, #vuejs {
+    animation-name: enterRightBounce;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-duration: 0.5s;
+}
+#bootstrap {
+    animation-delay: 0s;
+}
+#laravel {
+    animation-delay: 0.5s;
+}
+#vuejs {
+    animation-delay: 1s;
+}
+/* ==================================================================== 
+    Projects section  
+====================================================================== */
+
+/*  Project element styling and animation (I did use a simple javascript code for the animation :D).
+====================================================================== */
+.project-img-background {
+    height: 350px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.img-text-wrapper {
+    top: 0;
+}
+.img-text-wrapper .subtitle {
+    transition: 1s;
+    font-weight: 600;
+    color: transparent;
+}
+.img-text-wrapper:hover .subtitle {
+    cursor: pointer;
+    font-weight: 800;
+    color: #d3bfd6;
+}
+.img-darken {
+    transition: 1s;
+    filter: brightness(10%);
+}
+/* ==================================================================== 
+    Back to top button styling (I also used a simple javascript code to hide the button when the scroll position is top of the page).  
+====================================================================== */
+#backToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 6em;
+    right: 0.5em;
+    z-index: 2000;
+    cursor: pointer;
+}
+/* ==================================================================== 
+    Footer of the page  
+====================================================================== */
+#footer {
+    background-color: #2196F3;
+    z-index: 33000;
+}
+
+/* ==================================================================== 
+    All Keyframes  
+====================================================================== */
+
+/*  Rotate for portfolio logo
+====================================================================== */
+@keyframes rotateRow {
+    0%,10%{transform:translateY(0);}
+    5%{transform:translateY(-20px);}
+    100%{transform:rotate(20000deg)translateY(0);}
+}
+/*  Effect 3d for nav links
+====================================================================== */
+@keyframes effect3d {
+    to {
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15)
+    }
+}
+/*  Hand salute for the Home section
+====================================================================== */
+@keyframes hand-salute {
+    0%   { transform: rotate(5deg);}
+    50%  { transform: rotate(-5deg);}
+    100% { transform: rotate(5deg);}
+}
+/*  Typing machine for the Hello intro title
+====================================================================== */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100%; visibility: visible;}
+}
+@keyframes cursor {
+    50% { border-color: transparent }
+}
+/*  Bounce left to right for sub-sections titles
+====================================================================== */
+@keyframes bounce {
+    0% { transform: translateX(0);}
+    20% {transform: translateX(-0.5em);}
+    40% {transform: translateX(0);}
+    80% {transform: translateX(0.5em);}
+    100% {transform: translateX(0);}
+}
+/*  Entrance bounce for the skills section
+====================================================================== */
+@keyframes enterLeftBounce {
+    0%{transform:translateX(-220px);opacity:0}
+    50%{transform:translateX(0)}
+    70%{transform:translateX(-8px)}
+    100%{transform:translateX(0);opacity:1}
+}
+@keyframes enterRightBounce{
+    0%{transform:translateX(220px);opacity:0}
+    50%{transform:translateX(0)}
+    70%{transform:translateX(8px)}
+    100%{transform:translateX(0);opacity:1}
+}
